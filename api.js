@@ -1,25 +1,20 @@
-console.log("Hello Shirly");
 var allCoins = [];
 
-
-$(function () {
-   
+$(function () {  
     var content= "My New Text";
-   
+    $("#c1").show().siblings().hide('slow');
+    if ($("#c1")){
+        homePage(allCoins);
+    }
 
-    $('.panel-button').on('click',function(){
-        var panelId= $(this).attr('data-panelid');
-        $('#'+panelId).show().siblings().hide('slow');
-        $('#'+panelId).html(content);
-    });
     allCoins= getCurrencys();
 });
 
 
 
 
-function homePage(page_name) {
-     $("#c1").append("<h1>${page_name}</h1>");
+function homePage(allCoins) {
+     $("#card-wrapper").append(`<div>"Some appended text."</div>`);
         
     alert("Loading");
     console.log("allCoins : " + allCoins);
