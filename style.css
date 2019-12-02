@@ -1,0 +1,19 @@
+image{
+    max-width: max-content;
+}
+
+.head-img{
+    max-width: 150px;
+
+    float: right;
+}
+.hide{
+    display: none;
+    background: red;
+}
+.show{
+    display: block;
+}
+.serch-btn{
+    margin-left: 10px;
+}
