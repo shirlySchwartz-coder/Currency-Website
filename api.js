@@ -1,27 +1,37 @@
 var allcoins = [];
 var coins = [];
+var default_page = "panel1";
+
 
 $(function() {
   allcoins = getCurrencys();
   console.log("allCoins : " + allcoins);
+  //
+  $("[id*='panel']").hide();
+  $("#" + default_page).show();
 
-  var content = "My New Text";
-  $("#c1").show().siblings().hide("slow");
-  if ($("#c1") && allcoins > 0) {
+  $(".panel-button").on("click", function() {
+    var panelId = $(this).data("panelid");
+    $("[id*='panel']").hide();
+    $("#" + panelId).show();
+    
+  });
+  //
+  // $("#c1").show().siblings().hide("slow");
+  if ($("#panel1") && allcoins > 0) {
     homePage(allcoins);
   }
 });
 
-function loadHomePage(){
-    $('.nav-link').addEventListner.on('click',function(id){
-        alert(id);
-    })
-    var back_img= $('<img src="./media/DSC_0915c.jpg"/>');
+function loadHomePage() {
+  $(".nav-link").addEventListner.on("click", function(id) {
+    alert(id);
+  });
+  var back_img = $('<img src="./media/DSC_0915c.jpg"/>');
 }
 function homePage(cardData) {
-   
-    $('#cont1').append(back_img);
-   alert("Loading");
+  $("#cont1").append(back_img);
+  alert("Loading");
   //console.log("allCoins : " + allCoins);
   if (allCoins.length > 0) {
     createCards(allCoins);
@@ -39,14 +49,18 @@ function createCards(cardData) {
 
     var body = $('<div class="card-body"></div>');
     var first_row = $('<div class="row"></div>');
-    var card_switch = $(`<label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>`);
+    var card_switch = $(
+      `<label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>`
+    );
     var symbol = $(
       `<div class="card-title"><h4> ${cardData[i].symbol}<h4></div>`
     );
     var name = $(`<div class="card-text">${cardData[i].name}</div>`);
     var btn = $(` <button class="btn btn-primary">More Info</button>`);
 
-    $(first_row).append(symbol).append(card_switch);
+    $(first_row)
+      .append(symbol)
+      .append(card_switch);
     $(body)
       .append(first_row)
       .append(name)
