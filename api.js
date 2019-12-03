@@ -6,21 +6,23 @@ $(function() {
   console.log("allCoins : " + allcoins);
 
   var content = "My New Text";
-  $("#c1")
-    .show()
-    .siblings()
-    .hide("slow");
+  $("#c1").show().siblings().hide("slow");
   if ($("#c1") && allcoins > 0) {
     homePage(allcoins);
   }
 });
 
+function loadHomePage(){
+    $('.nav-link').addEventListner.on('click',function(id){
+        alert(id);
+    })
+    var back_img= $('<img src="./media/DSC_0915c.jpg"/>');
+}
 function homePage(cardData) {
-  $("#card-wrapper").append(`<div>"Some appended text."</div>`);
-
-  alert("Loading");
+   
+    $('#cont1').append(back_img);
+   alert("Loading");
   //console.log("allCoins : " + allCoins);
-
   if (allCoins.length > 0) {
     createCards(allCoins);
   }
