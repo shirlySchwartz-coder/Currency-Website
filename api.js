@@ -6,8 +6,11 @@ $(function() {
   console.log("allCoins : " + allcoins);
 
   var content = "My New Text";
-  $("#c1").show().siblings().hide("slow");
-  if ($("#c1")&& allcoins>0) {
+  $("#c1")
+    .show()
+    .siblings()
+    .hide("slow");
+  if ($("#c1") && allcoins > 0) {
     homePage(allcoins);
   }
 });
@@ -24,19 +27,29 @@ function homePage(cardData) {
 }
 
 function createCards(cardData) {
-   // console.log("createCards");
+  // console.log("createCards");
   console.log(cardData);
   var div_card = $("#card-wrapper");
   for (let i = 0; i < 90; i++) {
-    var card = $(`<div class='col-md-4 outer-card' key = ${cardData[i].id}></div>`);
+    var card = $(
+      `<div class='col-md-4 outer-card card' style="width: 18rem;" key = ${cardData[i].id}></div>`
+    );
 
-    var inner_card = $("<div class='card'></div>");
-    var id = $(`<div class='title'> <strong>ID: </strong>${cardData[i].id}</div>`);
-    var symbol = $(`<div class='title'><strong>Symbol: </strong>${cardData[i].symbol}</div>`);
-    var name = $(`<div class='title'><strong>Name: </strong>${cardData[i].name}</div>`);
+    var body = $('<div class="card-body"></div>');
+    var first_row = $('<div class="row"></div>');
+    var card_switch = $(`<label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>`);
+    var symbol = $(
+      `<div class="card-title"><h4> ${cardData[i].symbol}<h4></div>`
+    );
+    var name = $(`<div class="card-text">${cardData[i].name}</div>`);
+    var btn = $(` <button class="btn btn-primary">More Info</button>`);
 
-    $(inner_card).append(id).append(symbol).append(name);
-    $(card).append(inner_card);
+    $(first_row).append(symbol).append(card_switch);
+    $(body)
+      .append(first_row)
+      .append(name)
+      .append(btn);
+    $(card).append(body);
     div_card.append(card);
   }
 }
@@ -47,9 +60,9 @@ function getCurrencys() {
     type: "GET",
     url: "https://api.coingecko.com/api/v3/coins/list",
     success: function(coins) {
-      console.log('1'+coins);
+      console.log("1" + coins);
       if (coins.length > 0) {
-        allcoins = coins ;
+        allcoins = coins;
         createCards(allcoins);
       }
     }
