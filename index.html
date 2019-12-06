@@ -47,10 +47,9 @@
                                         class="sr-only">(current)</span></a>
                             </li>
                             <form class="form-inline">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search"
-                                    aria-label="Search">
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
-                                        class="fa fa-search" aria-hidden="true"></i> Search</button>
+                                <input class="form-control mr-sm-2" type="text" id="search" value="" placeholder="Search">
+                                <div class="btn btn-outline-success my-2 my-sm-0 search-btn" onclick="getCoin()"><i
+                                        class="fa fa-search " aria-hidden="true"></i> Search</div>
                             </form>
                         </ul>
                     </div>
@@ -63,15 +62,15 @@
                 <div class="mymain">
                     <div class="page">
                         <div class="home-page col-12" id="panel1">
-                            <h2>Home</h2>
-                            <div class="cont" id="cont1">
-                                   
-                                <div  class ="row" id="card-wrapper">
+                            <h2 style="text-align: center;">Home</h2>
+                            <div class="cont" id="cont1">                               
+                              
+                            </div>
+                            <div  class ="row" id="card-wrapper">
                                     
-                                </div>
                             </div>
                         </div>
-                        <div class="live-page col-12" id="panel2">
+                        <div class="live-page col-12" id="panel2" style="display: none;">
                             <div class="page">
                                 <h2>Live Reports</h2>
                                 <div class="cont" id="cont2">
@@ -82,7 +81,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="about-page col-12" id="panel3">
+                        <div class="about-page col-12" id="panel3"style="display: none;>
                             <div class="page">
                                 <h2>About</h2>
                                 <div class="cont" id="cont3">
@@ -125,3 +124,4 @@
 </body>
 
 </html>
+
