@@ -2,26 +2,23 @@ var allcoins = [];
 var coins = [];
 var default_page = "panel1";
 
-
 $(function() {
-   
   $("[id*='panel']").hide();
   $("#" + default_page).show();
   homePage(allcoins);
-    
 
   $(".panel-button").on("click", function() {
     var panelId = $(this).data("panelid");
-    console.log("panelId: " +panelId)
+    console.log("panelId: " + panelId);
     $("[id*='panel']").hide();
     $("#" + panelId).show();
 
-    switch(panelId) {
-      case 'panel3':
+    switch (panelId) {
+      case "panel3":
         // code block
         alert("About!");
         break;
-      case 'panel2':
+      case "panel2":
         // code block
         alert("Live!");
         break;
@@ -30,34 +27,35 @@ $(function() {
         alert("Home!");
         homePage(allcoins);
     }
-
   });
-  
-
 });
 
-
-
 function homePage(cardData) {
-  var div_home=$('#cont1');
-  var back_img = $(`<div class="parallax" id="back_img">`);
-  var hr= $('<hr>');
-  div_home.append(back_img).append(hr);
+  var div_home = $("#cont1");
+  var back_img = $(`<div class="parallax" id="back_img"></div>`);
+  var page_titel = $(`
+    <div class="img_titel">
+        <span class="border">
+          Currency WebSite
+        </span>
+    </div>`);
+  //var hr= $('<hr>');
+  div_home.append(back_img).append(page_titel);
 
-  if (cardData.length==0){
-    var progresBar= $(
-    `<div class="progress">
+  if (cardData.length == 0) {
+   /* var progresBar = $(
+      `<div class="progress">
       <div class="progress-bar" style="width:70%">
     </div>
-  </div>`);
+  </div>`
+    );*/
     alert("Loading");
-    
-     getCurrencys(allcoins);
+    //div_home.append(progresBar);
+    //progresBarShow();
+    getCurrencys(allcoins);
+  } else {
+    // createCards(allcoins);
   }
- else{
-  
-   // createCards(allcoins);
- }
 }
 
 function createCards(cardData) {
@@ -66,14 +64,14 @@ function createCards(cardData) {
   var div_card = $("#card-wrapper");
   for (let i = 0; i < 90; i++) {
     var card = $(
-      `<div class='col-md-4 outer-card card' style="width: 18rem;" key = ${cardData[i].id}></div>`
+      `<div class='col-md-3 outer-card card' style="width: 18rem;" key = ${cardData[i].id}></div>`
     );
 
     var body = $('<div class="card-body"></div>');
     var first_row = $('<div class="row"></div>');
     var card_switch = $(
-    `<div class="myslider"><label class="switch"><input type="checkbox" checked><span class="slider round"></span></label></div>`
-     );
+      `<div class="myslider"><label class="switch"><input type="checkbox" checked><span class="slider round"></span></label></div>`
+    );
     var symbol = $(
       `<div class="card-title"><h4> ${cardData[i].symbol}<h4></div>`
     );
@@ -100,7 +98,7 @@ function getCurrencys(allcoins) {
     success: function(allcoins) {
       //console.log("1" + coins);
       if (allcoins.length > 0) {
-        allcoins = allcoins;
+        //progresBarShow();
         createCards(allcoins);
       }
     }
@@ -108,21 +106,19 @@ function getCurrencys(allcoins) {
   //return allcoins;
 }
 function getCoin() {
-  let searchcoin={};
-  let search = $('#search').val();
+  let searchcoin = {};
+  let search = $("#search").val();
   if (search.length < 3) {
-      alert("Search Phrase too Short...");
-      return;
+    alert("Search Phrase too Short...");
+    return;
   }
   $.ajax({
     type: "GET",
     url: `https://api.coingecko.com/api/v3/coins/${search}`,
     success: function(searchcoin) {
-      console.log( searchcoin);
-      
+      console.log(searchcoin);
     }
   });
- 
 }
 function printCurArray(array) {
   console.log("Array:" + array);
@@ -132,3 +128,23 @@ function printCurArray(array) {
     });
   }
 }
+/*function progresBarShow() {
+  var i = 0;
+  function move() {
+    if (i == 0) {
+      i = 1;
+      var elem = document.getElementById("myBar");
+      var width = 1;
+      var id = setInterval(frame, 10);
+      function frame() {
+        if (width >= 100) {
+          clearInterval(id);
+          i = 0;
+        } else {
+          width++;
+          elem.style.width = width + "%";
+        }
+      }
+    }
+  }
+}*/

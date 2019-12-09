@@ -1,16 +1,42 @@
 body {
+  height: 100%;
   margin: 0;
   padding: 0;
   width: 100%;
 }
 #back_img{
 width: 100%;
+opacity:0.70;
 background:url(./media/stockvault-money124632.jpg) 50% 0 no-repeat fixed;
 color:#fff;
-height:600px;
+min-height:500px;
 margin:0;
-padding:200px 0 260px;
-background-size:cover
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+background-attachment: fixed;
+
+}
+.section{
+  padding:3px 80px;
+}
+.img_titel{
+  position:absolute;
+  top:50%;
+  width:100%;
+  text-align:center;
+  color:#000;
+  font-size:40px;
+  letter-spacing:8px;
+  text-transform:uppercase; 
+}
+.img_titel .border{
+  background-color:rgb(20, 19, 19);
+  color:#fff;
+  padding:20px;
+}
+.img_titel  .border.trans{
+  background-color:transparent;
 }
 
 .hide{
@@ -23,34 +49,18 @@ background-size:cover
 .search-btn{
     margin-left: 10px;
 }
-/*Parallax*/
-/* .parallax {
-  width: 100%;
-  background-image: url("./media/stockvault-money124632.jpg");
-   /* Set a specific height */
- /* min-height: 500px;*/
-  /*position: fixed; */
 
-
-  /* Create the parallax scrolling effect */
- /* background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-} */
-
-/*switch settings*/
 .switch {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
-  }
+}
 .switch input { 
     opacity: 0;
     width: 0;
     height: 0;
-  }
+}
   
 .slider {
     position: absolute;
@@ -62,7 +72,7 @@ background-size:cover
     background-color: #ccc;
     -webkit-transition: .4s;
     transition: .4s;
-  }
+}
   
 .slider:before {
     position: absolute;
@@ -74,7 +84,7 @@ background-size:cover
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
-  }
+}
   
  input:checked + .slider {
     background-color: #2196F3;
@@ -93,8 +103,30 @@ background-size:cover
   /* Rounded sliders */
   .slider.round {
     border-radius: 34px;
+    position: absolute;
+    float: right;
   }
   
   .slider.round:before {
     border-radius: 50%;
   }
+  .flex-container{
+    display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  }
+  #myProgress {
+    width: 100%;
+    background-color: grey;
+  }
+  #myBar {
+    width: 1%;
+    height: 30px;
+    background-color: green;
+  }
+  .card{
+    padding: 3px;
+    border: 1px solid black;
+  }
+  
