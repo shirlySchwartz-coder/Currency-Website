@@ -4,6 +4,25 @@ body {
   padding: 0;
   width: 100%;
 }
+.cover{
+  position: fixed;
+  background: rgba(0,0,0,0.5);
+  width:100%;
+  height: 100%;
+  top:0;;
+  left:0;
+  z-index: 1000;
+  display: none;
+}
+.cover svg{
+  position: absolute;
+  top:50%;
+  width:50px;
+  height: 50px;
+  margin-top:-25px;
+  left:50%;
+  margin-left:-25px;
+}
 #back_img{
 width: 100%;
 opacity:0.70;
@@ -16,6 +35,10 @@ background-position:center;
 background-repeat:no-repeat;
 background-attachment: fixed;
 
+}
+#card-wrapper{
+  width:100%;
+  padding:30px;
 }
 .section{
   padding:3px 80px;
@@ -55,6 +78,7 @@ background-attachment: fixed;
     display: inline-block;
     width: 60px;
     height: 34px;
+    margin-left: 100px;
 }
 .switch input { 
     opacity: 0;
