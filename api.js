@@ -1,8 +1,12 @@
 var allcoins = [];
 var coins = [];
 var default_page = "panel1";
+var selected_coins=[];
 
 $(function() {
+  $( document ).ajaxStart(function() {
+    $( "#loading" ).show();
+  });
   $("[id*='panel']").hide();
   $("#" + default_page).show();
   homePage(allcoins);
@@ -21,6 +25,7 @@ $(function() {
       case "panel2":
         // code block
         alert("Live!");
+        livePage();
         break;
       default:
         // code block
@@ -31,80 +36,81 @@ $(function() {
 });
 
 function homePage(cardData) {
+  let sitetitel="Currency WebSite";
   var div_home = $("#cont1");
   var back_img = $(`<div class="parallax" id="back_img"></div>`);
-  var page_titel = $(`
-    <div class="img_titel">
-        <span class="border">
-          Currency WebSite
-        </span>
-    </div>`);
-  //var hr= $('<hr>');
+  var page_titel = $(`<div class="img_titel"><span class="border">${sitetitel}</span> </div>`);
   div_home.append(back_img).append(page_titel);
 
   if (cardData.length == 0) {
-   /* var progresBar = $(
-      `<div class="progress">
-      <div class="progress-bar" style="width:70%">
-    </div>
-  </div>`
-    );*/
-    alert("Loading");
-    //div_home.append(progresBar);
-    //progresBarShow();
-    getCurrencys(allcoins);
-  } else {
-    // createCards(allcoins);
+    getCurrencys(cardData);
   }
 }
 
 function createCards(cardData) {
   // console.log("createCards");
-  console.log(cardData);
-  var div_card = $("#card-wrapper");
+  console.log(cardData);  
   for (let i = 0; i < 90; i++) {
-    var card = $(
-      `<div class='col-md-3 outer-card card' style="width: 18rem;" key = ${cardData[i].id}></div>`
-    );
-
-    var body = $('<div class="card-body"></div>');
-    var first_row = $('<div class="row"></div>');
-    var card_switch = $(
-      `<div class="myslider"><label class="switch"><input type="checkbox" checked><span class="slider round"></span></label></div>`
-    );
-    var symbol = $(
-      `<div class="card-title"><h4> ${cardData[i].symbol}<h4></div>`
-    );
-    var name = $(`<div class="card-text">${cardData[i].name}</div>`);
-    var btn = $(` <button class="btn btn-primary">More Info</button>`);
-
-    $(first_row)
-      .append(symbol)
-      .append(card_switch);
-    $(body)
-      .append(first_row)
-      .append(name)
-      .append(btn);
-    $(card).append(body);
-    div_card.append(card);
+      createCard(cardData[i]);
   }
 }
 
 function getCurrencys(allcoins) {
   var coins = [];
+  $(".cover").show();
   $.ajax({
     type: "GET",
     url: "https://api.coingecko.com/api/v3/coins/list",
     success: function(allcoins) {
-      //console.log("1" + coins);
+     
+      $(".cover").hide();
       if (allcoins.length > 0) {
-        //progresBarShow();
         createCards(allcoins);
       }
     }
   });
-  //return allcoins;
 }
+
+function createCard(coin){
+  var div_card = $("#card-wrapper");
+  var card = $(
+    `<div class='col-md-3 outer-card card' style="width: 18rem;" key = ${coin.id}></div>`
+  );
+
+  var body = $('<div class="card-body"></div>');
+  var first_row = $('<div class="row"></div>');
+  
+  var symbol = $(
+    `<div class="card-title" style="width: 50%;"><h4> ${coin.symbol}<h4></div>`
+  );
+  var card_switch = $(
+    `<div class="myslider" style="width: 50%;"><label class="switch"><input type="checkbox" ><span class="slider round"></span></label></div>`
+  );
+  var name = $(`<div class="card-text">${coin.name}</div>`);
+  var infobtn = $(` <button class="btn btn-primary" id="info_btn">More Info</button>`);
+  infobtn.on('click',function(coin){
+    info_coin={};
+    $.ajax({
+      type: "GET",
+      url: `https://api.coingecko.com/api/v3/coins/${coin.name}`,
+      success: function(info_coin) {
+        console.log(info_coin);
+        moreInfoCreate(info_coin);  
+      }
+    });    
+  });
+
+  $(first_row)
+    .append(symbol)
+    .append(card_switch);
+  $(body)
+    .append(first_row)
+    .append(name)
+    .append(infobtn);
+  $(card).append(body);
+  div_card.append(card);
+}
+
 function getCoin() {
   let searchcoin = {};
   let search = $("#search").val();
@@ -117,34 +123,26 @@ function getCoin() {
     url: `https://api.coingecko.com/api/v3/coins/${search}`,
     success: function(searchcoin) {
       console.log(searchcoin);
+      $("#card-wrapper").html("");
+      console.log(searchcoin);
+      createCard(searchcoin); 
+      
     }
   });
 }
+
 function printCurArray(array) {
-  console.log("Array:" + array);
+  console.log( array);
+  console.log("startin to print array");
   for (let i = 0; i < 100; i++) {
-    $.each(coins, function(i, coins) {
-      console.log(coins[i]);
-    });
+    let coin = array[i];
   }
 }
-/*function progresBarShow() {
-  var i = 0;
-  function move() {
-    if (i == 0) {
-      i = 1;
-      var elem = document.getElementById("myBar");
-      var width = 1;
-      var id = setInterval(frame, 10);
-      function frame() {
-        if (width >= 100) {
-          clearInterval(id);
-          i = 0;
-        } else {
-          width++;
-          elem.style.width = width + "%";
-        }
-      }
-    }
-  }
-}*/
+
+function moreInfoCreate(coin) {
+  var more_info_div= $(`<a href="#demo" data-toggle="collapse" style="text-align:center">Coin Info</a>`);
+  var coin_info=$(`<div id="demo" class="collapse">${coin.name}</div>`);
+
+  card.insertAfter(more_info_div).insertAfter(coin_info);
+}
+

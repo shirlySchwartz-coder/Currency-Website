@@ -21,6 +21,59 @@
 </head>
 
 <body>
+    <div class="cover">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:auto;background:#fff;display:block;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                <g transform="rotate(0 50 50)">
+                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#fe718d">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.9166666666666666s" repeatCount="indefinite"></animate>
+                  </rect>
+                </g><g transform="rotate(30 50 50)">
+                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#fe718d">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.8333333333333334s" repeatCount="indefinite"></animate>
+                  </rect>
+                </g><g transform="rotate(60 50 50)">
+                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#fe718d">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.75s" repeatCount="indefinite"></animate>
+                  </rect>
+                </g><g transform="rotate(90 50 50)">
+                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#fe718d">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.6666666666666666s" repeatCount="indefinite"></animate>
+                  </rect>
+                </g><g transform="rotate(120 50 50)">
+                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#fe718d">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5833333333333334s" repeatCount="indefinite"></animate>
+                  </rect>
+                </g><g transform="rotate(150 50 50)">
+                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#fe718d">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5s" repeatCount="indefinite"></animate>
+                  </rect>
+                </g><g transform="rotate(180 50 50)">
+                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#fe718d">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.4166666666666667s" repeatCount="indefinite"></animate>
+                  </rect>
+                </g><g transform="rotate(210 50 50)">
+                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#fe718d">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.3333333333333333s" repeatCount="indefinite"></animate>
+                  </rect>
+                </g><g transform="rotate(240 50 50)">
+                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#fe718d">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.25s" repeatCount="indefinite"></animate>
+                  </rect>
+                </g><g transform="rotate(270 50 50)">
+                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#fe718d">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.16666666666666666s" repeatCount="indefinite"></animate>
+                  </rect>
+                </g><g transform="rotate(300 50 50)">
+                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#fe718d">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.08333333333333333s" repeatCount="indefinite"></animate>
+                  </rect>
+                </g><g transform="rotate(330 50 50)">
+                  <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#fe718d">
+                    <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animate>
+                  </rect>
+                </g>
+            </svg>    
+        </div>
     <div>
         <header>
             <div class="mynav">
@@ -66,9 +119,8 @@
                             <div class="cont" id="cont1">                               
                                 
                             </div>
-                            <div id="myProgress">
-                                <div id="myBar"></div>
-                              </div>
+                            
+                            <div style="display: none;" id="loading" ></div>  
                             <div class="flex-container">
                                 <div  class ="row section" id="card-wrapper">
                                     
@@ -77,17 +129,17 @@
                             
                         </div>
                         <div class="live-page" id="panel2" style="display: none;">
-                            <div class="page">
-                                <h2>Live Reports</h2>
+                            <div class="page container">
+                                <h2 style="text-align: center;">Live Reports</h2>
                                 <div class="cont" id="cont2">
 
                                     <div id="live-wrapper">
-                                        live-wrapper
+                                        <div id="chart">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="about-page col-12" id="panel3"style="display: none;>
+                        <div class="about-page col-12" id="panel3"style="display: none;">
                             <div class="page">
                                 <h2>About</h2>
                                 <div class="cont" id="cont3">
@@ -112,7 +164,7 @@
     </div>
 
 
-
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -126,6 +178,7 @@
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
     <script src="api.js"></script>
+    <script src="live.js"></script>
 
 </body>
 
